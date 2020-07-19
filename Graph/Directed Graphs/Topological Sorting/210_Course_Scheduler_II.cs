@@ -12,7 +12,7 @@ public class Solution {
         
         for (int i = 0; i < n; i++)
             if (!Topo(graph, visited, retval, i))
-                return new int[n];
+                return new int[0];
         
         retval.Reverse();
         
