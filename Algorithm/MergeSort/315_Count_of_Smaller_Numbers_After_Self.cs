@@ -1,9 +1,53 @@
-public class Solution {
+public class Solution {    
+    public IList<int> CountSmaller(int[] nums)
+    {
+        return BinarySearchSolution(nums);
+        // return MergeSolution(nums);
+    }
+
+    private List<int> BinarySearchSolution(int[] nums)
+    {
+        List<int> sorted = new List<int>();
+        int[] res = new int[nums.Length];
+
+        for (int i = nums.Length - 1; i >= 0; i--)
+        {
+            res[i] = SortAndFindIndex(sorted, nums[i]);
+            sorted.Insert(res[i], nums[i]);
+        }
+
+        return res;
+    }
+
+    private int SortAndFindIndex(List<int> sorted, int num)
+    {
+        int start = 0, end = sorted.Count;
+
+        while (start < end)
+        {
+            int mid = start + (end - start) / 2;
+            
+            if (sorted[mid] >= num)
+            {
+                // decrease index
+                end = mid;
+            }
+            else
+            {
+                // increase index
+                start = mid + 1;
+            }
+        }
+
+        // The sorted list tells how many smaller numbers are on the right.
+        // If start = 2, there are two smaller numbers.
+        return start;
+    }
+
     // You need to store the sorted index instead of sorting the nums. 
     // For example, [2,0,1] => [0,2][1] : [0, 2, 1] => [0, 1, 2]
     // count        [0,0,0] =>            [1, 0, 0] => [1, 1, 0] 
-    
-    public IList<int> CountSmaller(int[] nums)
+    private List<int> MergeSolution(int[] nums)
     {
         int[] count = new int[nums.Length];
         int[] indexes = new int[nums.Length];
