@@ -16,6 +16,15 @@ public class Solution {
             }
             else
             {
+                // [1,1,1,1,1,1,1,1,2,1,1]
+                //  l       m         r
+                // need to make l = r
+                // End the while loop and return nums[l]
+                if (nums[r - 1] > nums[r])
+                {
+                    l = r;
+                    break;
+                }
                 r--;
             }
         }
