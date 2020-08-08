@@ -19,9 +19,15 @@ public class Solution {
         
         List<IList<int>> ans = new List<IList<int>>();
 
-        foreach (var kvp in map.OrderBy(x => x.Key))
+        foreach (var xkvp in map.OrderBy(x => x.Key))
         {
-            ans.Add(new List<int>(kvp.Value.ToList()));
+            List<int> tmp = new List<int>();
+            
+            foreach (var ykvp in map[xkvp.Key].OrderBy(y => y.Key))
+                foreach (int val in ykvp.Value.OrderBy(z => z))
+                    tmp.Add(val);
+
+            ans.Add(tmp);
         }
 
         return ans;
