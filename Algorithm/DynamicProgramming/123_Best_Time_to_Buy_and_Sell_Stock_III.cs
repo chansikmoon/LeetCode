@@ -2,6 +2,7 @@ public class Solution {
     public int MaxProfit(int[] prices) {
         
     }
+
     private int StateMachineSolution(int[] prices)
     {
         if (prices.Length == 0) return 0;
@@ -10,6 +11,11 @@ public class Solution {
         
         for (int i = 1; i < prices.Length; i++)
         {
+            //  State 0: Rest or Purchase(less money) 
+            //  State 1: Rest or Sell (earn money)
+            //  State 2: Rest or Purchase(less money)
+            //  State 3: Rest or Sell (earn money)    
+                        
             s0 = Math.Max(s0, -prices[i]);
             s1 = Math.Max(s1, s0 + prices[i]);
             s2 = Math.Max(s2, s1 - prices[i]);
