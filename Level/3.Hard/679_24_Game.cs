@@ -1,3 +1,4 @@
+// The input is fixed. Therefore, it is O(1). 
 public class Solution {
     public bool JudgePoint24(int[] nums) {
         List<double> list = new List<double>();
