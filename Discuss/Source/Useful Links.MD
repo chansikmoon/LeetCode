@@ -24,3 +24,7 @@
 ## A Recursive approach to Segment Trees, Range Sum Queries & Lazy Propagation
 
 [Segment Trees, Rang Sum Queries & Lazy Propagation](https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/#)
+
+## Binary Search
+
+[Powerful Ultimate Binary Search Template](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
