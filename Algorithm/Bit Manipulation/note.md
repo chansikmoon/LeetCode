@@ -60,4 +60,16 @@ return ans ^ nums.Length;
 
 - [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
 
+### Number of bits
+```cs
+// num = 8
 
+// Math.Log(num, 2) ==> 3 + 1 ==> 4
+// 16 == 10000
+int l = (int) Math.Log(num, 2) + 1;
+// 16 - 1 = 15
+// 15 == 1111
+int bitmask = (1 << l) - 1;
+```
+
+- [Complement of Base 10 Integer](https://leetcode.com/problems/complement-of-base-10-integer/)
