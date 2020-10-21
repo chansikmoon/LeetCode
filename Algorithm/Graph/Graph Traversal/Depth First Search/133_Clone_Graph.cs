@@ -23,15 +23,19 @@ public class Node {
 
 public class Solution {
     private Dictionary<Node, Node> visited = new Dictionary<Node, Node>();
-    
     public Node CloneGraph(Node node) {
+        return BFSCloneGraph(node);
+    }
+    
+    public Node DFSCloneGraph(Node node)
+    {
         if (node == null)
             return null;
         
         if (visited.ContainsKey(node))
             return visited[node];
         
-        Node cloneNode = new Node(node.val, new List<Node>());
+        Node cloneNode = new Node(node.val);
         visited.Add(node, cloneNode);
         
         foreach (Node neighbor in node.neighbors)
@@ -40,5 +44,34 @@ public class Solution {
         }
         
         return cloneNode;
+    }
+    
+    public Node BFSCloneGraph(Node node)
+    {
+        if (node == null)
+            return null;
+        
+        Queue<Node> q = new Queue<Node>();
+        Dictionary<Node, Node> map = new Dictionary<Node, Node>();
+        q.Enqueue(node);
+        map.Add(node, new Node(node.val));
+        
+        while (q.Count > 0)
+        {
+            Node curr = q.Dequeue();
+            
+            foreach (Node neighbor in curr.neighbors)
+            {
+                if (!map.ContainsKey(neighbor))
+                {
+                    map.Add(neighbor, new Node(neighbor.val));
+                    q.Enqueue(neighbor);
+                }
+                
+                map[curr].neighbors.Add(map[neighbor]);
+            }
+        }
+        
+        return map[node];
     }
 }
