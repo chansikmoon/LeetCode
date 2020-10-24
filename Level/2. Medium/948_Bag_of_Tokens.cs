@@ -1,4 +1,6 @@
 public class Solution {
+    // Time complexity: O(n log n) Array.Sort uses introSort
+    // Space complexity: O(n) introSort space complexity is O(n)
     public int BagOfTokensScore(int[] tokens, int P) {
         // O(n log n)
         Array.Sort(tokens);
