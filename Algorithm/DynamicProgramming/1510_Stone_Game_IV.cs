@@ -11,7 +11,7 @@ public class Solution {
             for (int k = 1; k * k <= i; k++)
             {
                 // if dp[i - k * k] is false, then dp[i] should be true
-                // if dp[i - k * k] is true, then Alice loses then game at ith turn.
+                // if dp[i - k * k] is true, then Alice loses the game at ith turn.
                 // Ex) dp[1 - (1)] == false, then dp[1] = true
                 if (!dp[i - k * k])
                 {
