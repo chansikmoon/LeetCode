@@ -59,4 +59,31 @@ public class Solution {
         Connect(root.left, root.right);
         Connect(root.right, next != null ? next.left : null);
     }
+
+    public Node IterativeSolution(Node root)
+    {
+        if (root == null) return root;
+        Queue<Node> q = new Queue<Node>();
+        
+        q.Enqueue(root);
+        
+        while (q.Count > 0)
+        {
+            int size = q.Count;
+            
+            for (int i = 0; i < size; i++)
+            {
+                var node = q.Dequeue();
+                node.next = (size - i - 1) > 0 ? q.Peek() : null;
+                
+                if (node.left != null)
+                    q.Enqueue(node.left);
+                
+                if (node.right != null)
+                    q.Enqueue(node.right);
+            }
+        }
+        
+        return root;
+    }
 }
