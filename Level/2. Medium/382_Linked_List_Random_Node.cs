@@ -9,7 +9,10 @@
  *     }
  * }
  */
-public class Solution {
+
+ // https://en.wikipedia.org/wiki/Reservoir_sampling
+ 
+ public class Solution {
     Random rand = new Random();
     ListNode head;
     /** @param head The linked list's head.
