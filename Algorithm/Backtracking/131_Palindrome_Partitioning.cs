@@ -2,7 +2,7 @@ public class Solution {
     public IList<IList<string>> Partition(string s) 
     {
         var ret = new List<IList<string>>();
-        Backtracking(ret, new List<string>(), s, 0)
+        Backtracking(ret, new List<string>(), s, 0);
         return ret;
     }
 
