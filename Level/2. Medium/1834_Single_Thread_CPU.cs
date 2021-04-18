@@ -12,7 +12,7 @@ public class Solution
 
         foreach (var t in arr)
             Console.WriteLine(t.Print());
-
+        // https://stackoverflow.com/questions/42355955/c-comparing-two-objects-by-multiple-properties-in-sortedset
         var pq = new SortedSet<Process>(
             Comparer<Process>.Create((a, b) =>
             {
