@@ -4,6 +4,29 @@ public class Solution
     {
         // BruteForce
         // return Helper(nums, new int?[nums.Length], 0, 0);
+        return Greedy1(nums);
+    }
+
+    public int Greedy1(int[] nums)
+    {
+        int steps = 0, farthest = 0, currEnd = 0;
+
+        for (int i = 0; i < nums.Length - 1; i++)
+        {
+            farthest = Math.Max(farthest, i + nums[i]);
+
+            if (i == currEnd)
+            {
+                steps++;
+                currEnd = farthest;
+            }
+        }
+
+        return steps;
+    }
+
+    public int Greedy2(int[] nums)
+    {
         int steps = 0, position = nums.Length - 1;
 
         while (position > 0)
