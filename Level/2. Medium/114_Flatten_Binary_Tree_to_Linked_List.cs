@@ -36,4 +36,16 @@ public class Solution
             node = node.right;
         }
     }
+
+    private TreeNode Helper(TreeNode root, TreeNode prev)
+    {
+        if (root == null)
+            return prev;
+        prev = Helper(root.right, prev);
+        prev = Helper(root.left, prev);
+        root.right = prev;
+        root.left = null;
+
+        return root;
+    }
 }
