@@ -18,4 +18,23 @@ public class Solution
 
         return ret;
     }
+
+    public IList<IList<int>> BacktrackingSubsets(int[] nums)
+    {
+        var ret = new List<IList<int>>();
+        Array.Sort(nums);
+        Backtracking(ret, new List<int>(), nums, 0);
+        return ret;
+    }
+
+    private void Backtracking(List<IList<int>> ret, List<int> list, int[] nums, int i)
+    {
+        ret.Add(new List<int>(list));
+        for (; i < nums.Length; i++)
+        {
+            list.Add(nums[i]);
+            Backtracking(ret, list, nums, i + 1);
+            list.RemoveAt(list.Count - 1);
+        }
+    }
 }
