@@ -10,4 +10,13 @@ public class Solution {
         
         return ans ^= nums.Length;
     }
+
+    public int Solution1(int[] nums) {
+        int expected = nums.Length * (nums.Length + 1) / 2;
+        int actual = 0;
+        for (int i = 0; i < nums.Length; i++)
+            actual += nums[i];
+        
+        return expected - actual;
+    }
 }

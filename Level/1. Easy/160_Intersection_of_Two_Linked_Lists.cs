@@ -19,7 +19,6 @@ public class Solution {
             currA = currA == null ? headB : currA.next;
             currB = currB == null ? headA : currB.next;
         }
-        
         return currA;
     }
 }
