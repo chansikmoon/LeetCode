@@ -29,11 +29,19 @@ public class MyCalendar {
             if (index == -1)
                 return false;
             
-            //    10 ------------- 19
-            //              15 ------------24
+            // Checking ceiling
+            // if the index == events.Count, then it is the last event as of now.
+            
+            // newEvent.End < ceiling.start => true
+            // newEvent.End >= ceiling.start => false
             if (index < bookingList.Count && bookingList[index].start <= newBook.end)
                 return false;
             
+            // Checking floor
+            // if the index == 0, then it is the first event as of now.
+            
+            // floor.end < newEvent.start => true
+            // floor.end >= newEvent.start => false
             if (index > 0 && newBook.start <= bookingList[index - 1].end)
                 return false;
         }
