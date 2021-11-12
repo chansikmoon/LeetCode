@@ -26,10 +26,37 @@ public class Solution {
             {
                 p = c;
             }
-            
+
             c = c.next;
         }
         
         return head.val == val ? head.next : head;
+    }
+
+    public ListNode AnotherVersion(ListNode head, int val) {
+        var list = new List<ListNode>();
+        
+        var curr = head;
+        
+        while (curr != null)
+        {
+            if (curr.val != val)
+                list.Add(curr);
+            
+            curr = curr.next;
+        }
+        
+        var dummy = new ListNode();
+        curr = dummy;
+        
+        foreach (var node in list)
+        {
+            curr.next = node;
+            curr = curr.next;
+        }
+        
+        curr.next = null;
+        
+        return dummy.next;
     }
 }
