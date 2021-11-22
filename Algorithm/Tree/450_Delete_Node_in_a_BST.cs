@@ -13,16 +13,25 @@
  */
 public class Solution {
     public TreeNode DeleteNode(TreeNode root, int key) {
-        if (root == null) return null;
+        if (root == null)
+        {
+            return null;
+        } 
         
         if (key > root.val)
+        {
             root.right = DeleteNode(root.right, key);
+        }
         else if (key < root.val)
+        {
             root.left = DeleteNode(root.left, key);
+        }
         else
         {
             if (root.left == null && root.right == null)
+            {
                 root = null;
+            }
             else if (root.right != null)
             {
                 root.val = Successor(root);
@@ -42,7 +51,9 @@ public class Solution {
     {
         root = root.right;
         while (root.left != null)
+        {
             root = root.left;
+        }
         return root.val;
     }
     
@@ -50,7 +61,9 @@ public class Solution {
     {
         root = root.left;
         while (root.right != null)
+        {
             root = root.right;
+        }
         return root.val;
     }
 }
