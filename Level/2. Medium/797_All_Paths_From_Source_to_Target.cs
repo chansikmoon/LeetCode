@@ -43,3 +43,34 @@ public class Solution {
         }
     }
 }
+
+public class Solution2 {
+    private int _dest { get; set; }
+    private IList<IList<int>> ret { get; set; }
+    public IList<IList<int>> AllPathsSourceTarget(int[][] graph) {
+        _dest = graph.Length - 1;
+        ret = new List<IList<int>>();
+        DFS(graph, new List<int>(), 0);
+        return ret;
+    }
+    
+    private void DFS(int[][] graph, List<int> list, int curr)
+    {
+        if (curr == _dest)
+        {
+            var toAdd = new List<int>(list);
+            toAdd.Add(curr);
+            ret.Add(toAdd);
+            return;
+        }
+        
+        list.Add(curr);
+        
+        foreach (int next in graph[curr])
+        {
+            DFS(graph, list, next);
+        }
+        
+        list.RemoveAt(list.Count - 1);
+    }
+}
