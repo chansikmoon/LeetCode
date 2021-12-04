@@ -1,51 +1,56 @@
 public class StreamChecker {
-    public TrieNode trie;
-    public StringBuilder sb;
-    
+    private TrieNode root { get; set; }
+    private StringBuilder sb { get; set; }
+
     public StreamChecker(string[] words) {
-        trie = new TrieNode();
+        root = new TrieNode();
         sb = new StringBuilder();
         
-        foreach (string word in words)
+        foreach (var word in words)
         {
-            TrieNode root = trie;
+            var node = root;
             
             for (int i = word.Length - 1; i >= 0; i--)
             {
-                if (root.next[word[i] - 'a'] == null)
-                    root.next[word[i] - 'a'] = new TrieNode();
+                int idx = word[i] - 'a';
                 
-                root = root.next[word[i] - 'a'];
+                if (node.children[idx] == null)        
+                    node.children[idx] = new TrieNode();
+                
+                node = node.children[idx];
             }
             
-            root.completed = true;
+            node.isCompleted = true;
         }
     }
     
     public bool Query(char letter) {
         sb.Append(letter);
-        TrieNode root = trie;
+        var node = root;
         
-        for (int i = sb.Length - 1; i >= 0 && root != null; i--)
+        for (int i = sb.Length - 1; i >= 0 && node != null; i--)
         {
-            root = root.next[sb[i] - 'a'];
-            if (root != null && root.completed)
+            int idx = sb[i] - 'a';
+            node = node.children[idx];
+            
+            if (node != null && node.isCompleted)
                 return true;
         }
-        
+            
         return false;
     }
 }
 
-public class TrieNode {
-    public bool completed;
-    public TrieNode[] next;
+public class TrieNode 
+{
+    public bool isCompleted { get; set; }
+    public TrieNode[] children { get; set; }
     
     public TrieNode()
     {
-        completed = false;
-        next = new TrieNode[26];
-    } 
+        isCompleted = false;
+        children = new TrieNode[26];
+    }
 }
 
 /**
