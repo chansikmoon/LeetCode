@@ -50,3 +50,27 @@ public class Solution {
         return ret;
     }
 }
+
+public class Solution1 {
+    public int Rob(TreeNode root) {
+        var ret = Helper(root);
+        return ret[1];
+    }
+    
+    // ret[0] = exclude root
+    // ret[1] = include root
+    public int[] Helper(TreeNode root)
+    {
+        if (root == null)
+            return new int[2];
+        
+        var left = Helper(root.left);
+        var right = Helper(root.right);
+        var ret = new int[2];
+        
+        ret[0] = left[1] + right[1];
+        ret[1] = Math.Max(root.val + left[0] + right[0], ret[0]);
+        
+        return ret;
+    }
+}
