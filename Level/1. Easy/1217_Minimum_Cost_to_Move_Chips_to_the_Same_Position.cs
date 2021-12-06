@@ -1,4 +1,9 @@
 public class Solution {
+    // Moving + or - 2 positions costs a zero
+    // Moving + or - 1 position costs one
+    // Thus moving all chips that are in odd positions to position 1 cost nothing.
+    // The same for all chips in even positions.
+    // Once all chips are in position 0 and 1, we choose minimum number of chips in 0 and 1.
     public int MinCostToMoveChips(int[] position) {
         int[] count = new int[2];
         
