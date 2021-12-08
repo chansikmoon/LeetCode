@@ -32,3 +32,25 @@ public class Solution {
         return root.val + left + right;
     }
 }
+
+public class Solution1 {
+    private int ret { get; set; }
+    public int FindTilt(TreeNode root) {
+        Helper(root);
+        
+        return ret;
+    }
+    
+    public int Helper(TreeNode root)
+    {
+        if (root == null)
+            return 0;
+        
+        int left = Helper(root.left);
+        int right = Helper(root.right);
+        
+        ret += Math.Abs(left - right);
+        
+        return root.val + left + right;
+    }
+}
