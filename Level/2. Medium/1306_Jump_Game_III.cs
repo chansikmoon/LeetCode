@@ -1,17 +1,19 @@
 public class Solution {
     public bool CanReach(int[] arr, int start) {
-        return DFS(arr, start, new bool[arr.Length]);
+        return DFS(arr, new bool[arr.Length], start);
     }
     
-    public bool DFS(int[] arr, int start, bool[] visited)
+    private bool DFS(int[] arr, bool[] visited, int index)
     {
-        if (start < 0 || start >= arr.Length || visited[start])
+        if (index < 0 || index >= arr.Length || visited[index])
             return false;
-        if (arr[start] == 0) 
-            return true;
-        visited[start] = true;
         
-        bool ret = DFS(arr, start + arr[start], visited) || DFS(arr, start - arr[start], visited);
+        if (arr[index] == 0)
+            return true;
+        
+        visited[index] = true;
+        var ret = DFS(arr, visited, index + arr[index]) || DFS(arr, visited, index - arr[index]);
+        visited[index] = false;
         
         return ret;
     }
