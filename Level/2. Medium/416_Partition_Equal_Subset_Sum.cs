@@ -1,27 +1,23 @@
 public class Solution {
     public bool CanPartition(int[] nums) {
-        int sum = nums.Sum();
+        int total = nums.Sum();
         
-        if ((sum & 1) == 1)
+        if ((total & 1) > 0)
             return false;
         
-        sum /= 2;
-        
-        int n = nums.Length;
-        bool[] dp = new bool[sum + 1];
+        int target = total / 2;
+        var dp = new bool[target + 1];
         dp[0] = true;
         
-        foreach (int num in nums)
+        foreach (var num in nums)
         {
-            for (int i = sum; i > 0; i--)
+            for (int i = target; i > 0; i--)
             {
                 if (i >= num)
-                {
                     dp[i] = dp[i] || dp[i - num];
-                }
             }
         }
         
-        return dp[sum];
+        return dp[target];
     }
 }
