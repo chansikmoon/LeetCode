@@ -1,15 +1,14 @@
 public class Solution {
     public int MaxPower(string s) {
-        int ret = 0;
+        int max = 1;
         
-        for (int l = 0, r = 0; r < s.Length; r++)
+        for (int i = 1, count = 1; i < s.Length; i++)
         {
-            if (s[l] != s[r])
-                l = r;
-            
-            ret = Math.Max(ret, r - l + 1);
+            if (s[i-1] != s[i])
+                count = 0;
+            max = Math.Max(max, ++count);
         }
         
-        return ret;
+        return max;
     }
 }
