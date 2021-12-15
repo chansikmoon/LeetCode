@@ -11,16 +11,13 @@
  */
 public class Solution {
     public ListNode InsertionSortList(ListNode head) {
-        if (head == null) return head;
-        
-        ListNode dummy = new ListNode(0);
-        ListNode prev = dummy;
-        ListNode curr = head;
-        ListNode next = null;
+        var dummy = new ListNode();
+        var prev = dummy;
+        var curr = head;
         
         while (curr != null)
         {
-            next = curr.next;
+            var next = curr.next;
             
             while (prev.next != null && prev.next.val < curr.val)
                 prev = prev.next;
