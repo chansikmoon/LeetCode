@@ -1,7 +1,6 @@
 public class Solution {
     public IList<int> FindMinHeightTrees(int n, int[][] edges) {
-        Dictionary<int, HashSet<int>> neighbors = new Dictionary<int, HashSet<int>>();
-        List<int> leaves = new List<int>();
+        var leaves = new List<int>();
         
         if (n <= 2)
         {
@@ -10,22 +9,23 @@ public class Solution {
             return leaves;
         }
         
+        var adjList = new List<int>[n];
+        
+        for (int i = 0; i < n; i++)
+            adjList[i] = new List<int>();
+        
+        foreach (var e in edges)
+        {
+            adjList[e[0]].Add(e[1]);
+            adjList[e[1]].Add(e[0]);
+        }
+        
         for (int i = 0; i < n; i++)
         {
-            neighbors.Add(i, new HashSet<int>());
+            if (adjList[i].Count == 1)
+                leaves.Add(i);
         }
         
-        foreach (int[] edge in edges)
-        {
-            neighbors[edge[0]].Add(edge[1]);
-            neighbors[edge[1]].Add(edge[0]);
-        }
-        
-        foreach (var kvp in neighbors)
-        {
-            if (kvp.Value.Count == 1)
-                leaves.Add(kvp.Key);
-        }
         
         int remainingLeaves = n;
         
@@ -36,15 +36,15 @@ public class Solution {
         while (remainingLeaves > 2)
         {
             remainingLeaves -= leaves.Count;
-            List<int> newLeaves = new List<int>();
+            var newLeaves = new List<int>();
             
             foreach (int leaf in leaves)
             {
-                foreach (int neighbor in neighbors[leaf])
+                foreach (int val in adjList[leaf])
                 {
-                    neighbors[neighbor].Remove(leaf);
-                    if (neighbors[neighbor].Count == 1)
-                        newLeaves.Add(neighbor);
+                    adjList[val].Remove(leaf);
+                    if (adjList[val].Count == 1)
+                        newLeaves.Add(val);
                 }
             }
             
