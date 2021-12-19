@@ -1,30 +1,30 @@
 public class Solution {
     public string DecodeString(string s) {
-        Stack<int> numSt = new Stack<int>();
-        Stack<StringBuilder> sbSt = new Stack<StringBuilder>();
+        var strStack = new Stack<StringBuilder>();
+        var freqStack = new Stack<int>();
         
-        int i = 0, num = 0;
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
+        int num = 0;
         
-        while (i < s.Length)
+        for (int i = 0; i < s.Length; i++)
         {
-            if (Char.IsDigit(s[i]))
+            if (char.IsDigit(s[i]))
             {
                 num = num * 10 + s[i] - '0';
             }
             else if (s[i] == '[')
             {
-                numSt.Push(num);
-                sbSt.Push(sb);
+                freqStack.Push(num);
+                strStack.Push(sb);
                 
                 num = 0;
                 sb = new StringBuilder();
             }
             else if (s[i] == ']')
             {
-                int freq = numSt.Pop();
+                int freq = freqStack.Pop();
                 StringBuilder repeatStr = sb;
-                sb = sbSt.Pop();
+                sb = strStack.Pop();
                 
                 while (freq-- > 0)
                     sb.Append(repeatStr);
@@ -33,8 +33,6 @@ public class Solution {
             {
                 sb.Append(s[i]);
             }
-            
-            i++;
         }
         
         return sb.ToString();
