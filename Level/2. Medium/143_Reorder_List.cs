@@ -11,63 +11,50 @@
  */
 public class Solution {
     public void ReorderList(ListNode head) {
-        if (head == null) return;
-        ListNode reorderHead = new ListNode(0), reorder = reorderHead;
-        ListNode ret = head, reversedSecondHalf = GetReversedSecondHalf(head);
+        var secondHalf = GetSecondHalf(head);
+        var reversedCurr = ReverseList(secondHalf);
+        var curr = head;
         
-        while (head != null && reversedSecondHalf != null)
+        while (curr != null && reversedCurr != null)
         {
-            ListNode newNode = new ListNode(head.val);
-            ListNode newNode1 = new ListNode(reversedSecondHalf.val);
+            var next = curr.next;
+            var reversedNext = reversedCurr.next;
             
-            head = head.next;
-            reversedSecondHalf = reversedSecondHalf.next;
+            curr.next = reversedCurr;
+            curr.next.next = next;
             
-            reorder.next = newNode;
-            reorder = reorder.next;
-            
-            reorder.next = newNode1;
-            reorder = reorder.next;
+            curr = next;
+            reversedCurr = reversedNext;
         }
-        
-        if (head != null)
-            reorder.next = head;
-        
-        // 1 -> null
-        ret.next = null;
-        
-        // 1 -> 0 -> 1 -> 4 -> 2 -> 3
-        ret.next = reorderHead.next.next;
-        
-        // 1 -> 4 -> 2 -> 3
     }
     
-    private ListNode GetReversedSecondHalf(ListNode head)
+    private ListNode GetSecondHalf(ListNode head)
     {
-        ListNode tortoise = head, hare = head;
+        var slow = head;
+        var fast = head;
         
-        while (hare.next != null && hare.next.next != null)
+        while (fast.next != null && fast.next.next != null)
         {
-            tortoise = tortoise.next;
-            hare = hare.next.next;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         
-        ListNode ret = tortoise.next;
-        tortoise.next = null;
+        var ret = slow.next;
+        slow.next = null;
         
-        return ReverseListNode(ret);
+        return ret;
     }
     
-    private ListNode ReverseListNode(ListNode head)
+    private ListNode ReverseList(ListNode curr)
     {
         ListNode prev = null;
-            
-        while (head != null)
+        
+        while (curr != null)
         {
-            ListNode next = head.next;
-            head.next = prev;
-            prev = head;
-            head = next;
+            var next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
         
         return prev;
