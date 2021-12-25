@@ -13,6 +13,7 @@ public class Solution {
             
             if ((!char.IsWhiteSpace(s[i]) && !char.IsDigit(s[i])) || i == s.Length - 1)
             {
+                
                 if (sign == '+')
                     numSt.Push(num);
                 else if (sign == '-')
