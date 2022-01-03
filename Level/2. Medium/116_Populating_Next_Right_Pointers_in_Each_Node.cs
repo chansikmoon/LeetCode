@@ -43,6 +43,33 @@ public class Solution {
         
         return root; 
     }
+
+    public Node BFSSolution2(Node root) {
+        var q = new Queue<Node>();
+        
+        if (root != null)
+            q.Enqueue(root);
+        
+        while (q.Count > 0)
+        {
+            int size = q.Count;
+            Node next = null;
+            while (size-- > 0)
+            {
+                var curr = q.Dequeue();
+                curr.next = next;
+                next = curr;
+                
+                if (curr.right != null)
+                    q.Enqueue(curr.right);
+                
+                if (curr.left != null)
+                    q.Enqueue(curr.left);
+            }
+        }
+            
+        return root;
+    }
     
     public Node RecursiveSolution(Node root)
     {
@@ -60,7 +87,7 @@ public class Solution {
         Connect(root.right, next != null ? next.left : null);
     }
 
-    public Node IterativeSolution(Node root)
+        public Node IterativeSolution(Node root)
     {
         if (root == null) return root;
         Queue<Node> q = new Queue<Node>();

@@ -1,15 +1,15 @@
 public class Solution {
     public int NumPairsDivisibleBy60(int[] time) {
-        int[] arr = new int[60];
+        var arr = new int[60];
         int ret = 0;
-
-        for (int i = 0; i < time.Length; i++)
+        
+        foreach (int t in time)
         {
             // time[i] = 60, 60 - 60 % 60 => 60. It should be 0
-            ret += arr[(60 - time[i] % 60) % 60];
-            arr[time[i] % 60]++;
+            ret += arr[(60 - t % 60) % 60];
+            arr[t % 60]++;
         }
-
+        
         return ret;
     }
     

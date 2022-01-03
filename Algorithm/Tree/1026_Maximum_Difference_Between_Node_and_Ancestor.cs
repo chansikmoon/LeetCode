@@ -44,4 +44,18 @@ public class Solution {
         
         return Math.Max(curr, Math.Max(left, right));
     }
+    
+    // 12/31/2021 Version
+    private int Helper(TreeNode root, int min, int max)
+    {
+        if (root == null)
+            return Int32.MinValue;
+        
+        int curr = Math.Max(Math.Abs(max - root.val), Math.Abs(min - root.val));
+        
+        int left = Helper(root.left, Math.Min(root.val, min), Math.Max(root.val, max));
+        int right = Helper(root.right, Math.Min(root.val, min), Math.Max(root.val, max));
+        
+        return Math.Max(curr, Math.Max(left, right));
+    }
 }
