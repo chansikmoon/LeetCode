@@ -12,4 +12,21 @@ public class Solution {
         // N ^ bitmask = 111
         return N ^ bitmask;
     }
+
+    public int BitwiseComplement2(int n) {
+        if (n == 0)
+            return 1;
+        
+        int num = n, bits = 0;
+        
+        while (num > 0)
+        {
+            num >>= 1;
+            bits++;
+        }
+        
+        int allOnes = (1 << bits) - 1;
+        
+        return n ^ allOnes;
+    }
 }
