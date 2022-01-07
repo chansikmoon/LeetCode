@@ -39,6 +39,36 @@
     }
 }
 
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(head);
+ * int param_1 = obj.GetRandom();
+ */
+
+public class Solution1 {
+    private Dictionary<int, int> map;
+    private Random rand;
+
+    public Solution(ListNode head) {
+        rand = new Random();
+        map = new Dictionary<int, int>();
+        int key = 0;
+        
+        while (head != null)
+        {
+            map.Add(key++, head.val);
+            head = head.next;
+        }
+    }
+    
+    public int GetRandom() {
+        int index = rand.Next(map.Count);
+        
+        return map[index];
+    }
+}
+
 /**
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(head);
