@@ -13,27 +13,25 @@
  */
 public class Solution {
     public int SumRootToLeaf(TreeNode root) {
-        return traverse(root, 0);
+        return DFS(root, 0);
     }
     
-    public int traverse(TreeNode root, int val)
+    private int DFS(TreeNode root, int num)
     {
-        val <<= 1;
-        
-        if (root.val == 1)
-            val += 1;
+        num <<= 1;
+        num |= root.val;
         
         if (root.left == null && root.right == null)
-            return val;
+            return num;
         
-        int ret = 0;
+        int left = 0, right = 0;
         
         if (root.left != null)
-            ret += traverse(root.left, val);
+            left = DFS(root.left, num);
         
         if (root.right != null)
-            ret += traverse(root.right, val);
+            right = DFS(root.right, num);
         
-        return ret;
+        return left + right;
     }
 }
