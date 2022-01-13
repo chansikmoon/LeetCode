@@ -1,12 +1,18 @@
 public class Solution {
-    public int FindMinArrowShots(int[][] arr) {
-        if (arr.Length == 0) return 0;
+    public int FindMinArrowShots(int[][] points) {
+        int n = points.Length;
+        if (n == 0)
+            return 0;
         
-        var points = arr.OrderBy(x => x[0]).ThenBy(x => x[1]).ToArray();;
+        Array.Sort(points, (a, b) =>
+                   {
+                       int ret = a[0].CompareTo(b[0]);
+                       return ret == 0 ? a[1].CompareTo(b[1]) : ret;
+                   });
         
         int ret = 1, start = points[0][0], end = points[0][1];
         
-        for (int i = 1; i < points.Length; i++)
+        for (int i = 1; i < n; i++)
         {
             if (start < points[i][0] && end < points[i][0])
             {
@@ -24,3 +30,11 @@ public class Solution {
         return ret;
     }
 }
+
+/*
+1--------------6
+    2-------------------8
+                   7--------------------12
+                                10--------------------------16
+                                             
+*/
