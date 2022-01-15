@@ -10,6 +10,7 @@ public class Solution {
         {
             if (!map.ContainsKey(arr[i]))
                 map.Add(arr[i], new List<int>());
+                
             map[arr[i]].Add(i);
         }
         
