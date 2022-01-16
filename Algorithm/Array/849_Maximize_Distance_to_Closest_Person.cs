@@ -11,6 +11,6 @@ public class Solution {
             }
         }
         
-        return Math.Max(ret, n - left - 1);
+        return Math.Max(ret, n - 1 - left);
     }
 }
