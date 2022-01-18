@@ -6,7 +6,7 @@ public class Solution {
         {
             if (flowerbed[i] == 0 &&
                (i == 0 || flowerbed[i - 1] == 0) &&
-               (flowerbed.Length - 1 == i || flowerbed[i + 1] == 0))
+               (i == flowerbed.Length - 1 || flowerbed[i + 1] == 0))
             {
                 flowerbed[i++] = 1;
                 ret++;
