@@ -2,7 +2,7 @@ public class Solution {
     // O(n^1.5)
     // O(n)
     public bool WinnerSquareGame(int n) {
-        bool[] dp = new bool[n + 1];
+        var dp = new bool[n + 1];
         
         // O(n)
         for (int i = 1; i <= n; i++)
