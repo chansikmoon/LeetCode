@@ -1,32 +1,33 @@
 public class Solution {
     public bool DetectCapitalUse(string word) {
-        return CheckAllUpper(word) || CheckAllLower(word) || CheckFirstLetterUpperAndAllLower(word);
+        // All Upper
+        // All Lower
+        // First letter is upper && remain letters are lower
+        return word.IsAllUpper() || word.IsAllLower() || (word.Substring(0, 1).IsAllUpper() && word.Substring(1).IsAllLower());
     }
-    
-    private bool CheckAllUpper(string word)
+}
+
+public static class StringHelper
+{
+    public static bool IsAllUpper(this string str)
     {
-        foreach (char c in word)
+        foreach (var c in str)
         {
-            if (!Char.IsUpper(c))
+            if (!char.IsUpper(c))
                 return false;
         }
         
         return true;
     }
     
-    private bool CheckAllLower(string word)
+    public static bool IsAllLower(this string str)
     {
-        foreach (char c in word)
+        foreach (var c in str)
         {
-            if (!Char.IsLower(c))
+            if (!char.IsLower(c))
                 return false;
         }
         
         return true;
-    }
-    
-    private bool CheckFirstLetterUpperAndAllLower(string word)
-    {
-        return CheckAllUpper(word.Substring(0, 1)) && CheckAllLower(word.Substring(1));
     }
 }
