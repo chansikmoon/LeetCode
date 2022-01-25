@@ -9,6 +9,27 @@ public class Solution {
         return i > 0 && i == j && j < n - 1;
     }
 
+    public bool AnotherSolution(int[] arr) {
+        if (arr.Length < 3)
+            return false;
+        
+        int inc = 1;
+        for (; inc < arr.Length; inc++)
+        {
+            if (arr[inc - 1] >= arr[inc])
+                break;
+        }
+        
+        int dec = arr.Length - 1;
+        for (; dec > 0; dec--)
+        {
+            if (arr[dec - 1] <= arr[dec])
+                break;
+        }
+        
+        return inc != 1 && dec != arr.Length -1 && dec + 1 == inc;
+    }
+
     public bool BruteForce(int[] arr)
     {
         int i = 1, n = arr.Length;
