@@ -13,10 +13,10 @@ public class Solution {
         if (arr.Length < 3)
             return false;
         
-        int inc = 1;
-        for (; inc < arr.Length; inc++)
+        int inc = 0;
+        for (; inc < arr.Length - 1; inc++)
         {
-            if (arr[inc - 1] >= arr[inc])
+            if (arr[inc] >= arr[inc + 1])
                 break;
         }
         
@@ -27,7 +27,7 @@ public class Solution {
                 break;
         }
         
-        return inc != 1 && dec != arr.Length -1 && dec + 1 == inc;
+        return inc > 0 && dec < arr.Length -1 && inc == dec;
     }
 
     public bool BruteForce(int[] arr)
