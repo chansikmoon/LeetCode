@@ -1,69 +1,67 @@
 public class WordDictionary {
-    public TrieNode trie;
-
-    /** Initialize your data structure here. */
+    private TrieNode Trie { get; set; }
     public WordDictionary() {
-        trie = new TrieNode();
+        Trie = new TrieNode();
     }
     
-    /** Adds a word into the data structure. */
     public void AddWord(string word) {
-        TrieNode root = trie;
+        var node = Trie;
         
-        for (int i = 0; i < word.Length; i++)
+        foreach (var c in word)
         {
-            int index = word[i] - 'a';
+            int idx = c - 'a';
             
-            // new character
-            if (root.next[index] == null)
-                root.next[index] = new TrieNode();
+            if (node.Children[idx] == null)
+            {
+                node.Children[idx] = new TrieNode();
+            }
             
-            root = root.next[index];
+            node = node.Children[idx];
         }
         
-        root.completed = true;
+        node.IsWord = true;
     }
     
-    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public bool Search(string word) {
-        return Traverse(word, 0, trie);
+        return Traverse(Trie, word, 0);
     }
     
-    private bool Traverse(string word, int index, TrieNode root)
-    {
-        if (index >= word.Length)
-            return root.completed;
-        
-        if (word[index] == '.')
+    private bool Traverse(TrieNode node, string word, int idx) {
+        if (idx >= word.Length) 
         {
-            // find next possible
+            return node.IsWord;
+        }
+        
+        if (word[idx] == '.')
+        {
             for (int i = 0; i < 26; i++)
             {
-                if (root.next[i] != null && Traverse(word, index + 1, root.next[i]))
+                if (node.Children[i] != null && Traverse(node.Children[i], word, idx + 1)) 
+                {
                     return true;
+                }
             }
         }
-        else
+        else 
         {
-            int i = word[index] - 'a';
-                
-            if (root.next[i] != null && Traverse(word, index + 1, root.next[i]))
+            int i = word[idx] - 'a';
+            if (node.Children[i] != null && Traverse(node.Children[i], word, idx + 1))
+            {
                 return true;
+            }
         }
         
         return false;
     }
 }
 
-public class TrieNode
-{
-    public bool completed;
-    public TrieNode[] next;
+public class TrieNode {
+    public TrieNode[] Children { get; set; }
+    public bool IsWord { get; set; }
     
-    public TrieNode()
-    {
-        completed = false;
-        next = new TrieNode[26];
+    public TrieNode() {
+        Children = new TrieNode[26];
+        IsWord = false;
     }
 }
 
