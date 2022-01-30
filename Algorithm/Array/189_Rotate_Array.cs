@@ -33,9 +33,9 @@ public class Solution {
     {
         while (i < j)
         {
-            int temp = nums[i];
+            int tmp = nums[i];
             nums[i] = nums[j];
-            nums[j] = temp;
+            nums[j] = tmp;
             
             i++;
             j--;
