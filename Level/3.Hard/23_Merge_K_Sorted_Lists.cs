@@ -92,4 +92,48 @@ public class Solution {
         
         return ret.next;
     }
+
+    // Update: 02/04/2022 Daily Question
+    private ListNode MergeSort(ListNode[] list, int left, int right) {
+        if (left == right)
+            return list[left];
+        
+        int mid = left + (right - left) / 2;
+        var l1 = MergeSort(list, left, mid);
+        var l2 = MergeSort(list, mid + 1, right);
+        return Merge(l1, l2);
+    }
+    
+    private ListNode Merge(ListNode h1, ListNode h2) {
+        var head = new ListNode();
+        var curr = head;
+        
+        while (h1 != null && h2 != null) {
+            var newNode = new ListNode();
+            
+            if (h1.val <= h2.val) {
+                newNode.val = h1.val;
+                h1 = h1.next;
+            }
+            else {
+                newNode.val = h2.val;
+                h2 = h2.next;
+            }
+            
+            curr.next = newNode;
+            curr = curr.next;
+        }
+        
+        if (h1 != null) {
+            curr.next = h1;
+        }
+        
+        
+        if (h2 != null) {
+            curr.next = h2;
+        }
+        
+        return head.next;
+    }
+
 }
