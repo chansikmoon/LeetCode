@@ -7,6 +7,7 @@ public class Solution {
     {
         // num == 18
         // 17 % 9 => 8 + 1 = 9
+        // Revisited 2/8/2022
         return num == 0 ? 0 : 1 + (num - 1) % 9;
     }
     
