@@ -1,6 +1,6 @@
 public class Solution {
     public int FindPairs(int[] nums, int k) {
-        Dictionary<int, int> map = new Dictionary<int, int>();
+        var map = new Dictionary<int, int>();
         int ret = 0;
         
         foreach (int num in nums)
@@ -12,9 +12,14 @@ public class Solution {
         
         foreach (var kvp in map)
         {
-            if ((k > 0 && map.ContainsKey(kvp.Key + k)) || 
-                (k == 0 && map.ContainsKey(kvp.Key) && map[kvp.Key] > 1))
+            int num = kvp.Key;
+            int freq = kvp.Value;
+            
+            if ((k > 0 && map.ContainsKey(num - k)) ||
+               (k == 0 && map[num] > 1))
+            {
                 ret++;
+            }
         }
         
         return ret;
