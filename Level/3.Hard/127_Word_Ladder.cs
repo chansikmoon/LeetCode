@@ -1,45 +1,51 @@
 public class Solution {
     public int LadderLength(string beginWord, string endWord, IList<string> wordList) {
-        var _set = wordList.ToHashSet();
-        Queue<string> q = new Queue<string>();
+        var wordSet = wordList.ToHashSet();
+        
+        if (wordSet.Add(endWord))
+            return 0;
+        
+        var q = new Queue<string>();
         q.Enqueue(beginWord);
+        
         int ret = 0;
         
-        if (!_set.Contains(endWord))
-            return ret;
-
-        while (q.Count > 0)
+        while (q.Count > 0) 
         {
             int size = q.Count;
+            
             while (size-- > 0)
             {
-                var word = q.Dequeue();
-                                
-                if (word == endWord)
+                var currWord = q.Dequeue();
+            
+                if (currWord == endWord)
                     return ret + 1;
+
+                var arr = currWord.ToCharArray();    
                 
-                var currWord = word.ToArray();
-                
-                for (int i = 0; i < currWord.Length; i++)
+                for (int i = 0; i < arr.Length; i++)
                 {
-                    char tmpCurrChar = currWord[i];
+                    var tmp = arr[i];
+                    
                     for (char ch = 'a'; ch <= 'z'; ch++)
                     {
-                        if (ch != tmpCurrChar)
+                        if (ch != tmp)
                         {
-                            currWord[i] = ch;
-                            string next = new string(currWord);
-                        
-                            if (_set.Contains(next))
+                            arr[i] = ch;
+                            var nextWord = new string(arr);
+                            
+                            if (wordSet.Contains(nextWord))
                             {
-                                q.Enqueue(next);
-                                _set.Remove(next);
+                                q.Enqueue(nextWord);
+                                wordSet.Remove(nextWord);
                             }
                         }
                     }
-                    currWord[i] = tmpCurrChar;
+                    
+                    arr[i] = tmp;
                 }
             }
+            
             ret++;
         }
         
