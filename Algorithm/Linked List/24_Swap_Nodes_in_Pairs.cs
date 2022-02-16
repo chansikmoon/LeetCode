@@ -21,3 +21,27 @@ public class Solution {
         return node;
     }
 }
+
+/*
+head = 1
+node = 2
+-------------
+head = 3
+node = 4
+-------------
+head = null
+return null
+-------------
+head = 3
+node = 4
+head.next = (from above, null)
+node.next = head
+return node (4 -> 3 -> null)
+-------------
+head = 1
+node = 2
+head.next = (4 -> 3 -> null)
+node.next = head (1 -> 4 -> 3 -> null)
+return node (2 -> 1 -> 4 -> 3 -> null)
+
+*/
