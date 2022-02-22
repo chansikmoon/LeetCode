@@ -1,10 +1,10 @@
 public class Solution {
     public int TitleToNumber(string s) {
-        int ans = 0;
+        int ret = 0;
         
-        for (int i = 0; i < s.Length; i++)
-            ans = ans * 26 + (s[i] - 'A' + 1);
+        foreach(var c in s)
+            ret = ret * 26 + (c - 'A') + 1;
         
-        return ans;
+        return ret;
     }
 }
