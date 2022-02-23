@@ -27,26 +27,27 @@ public class Solution {
         return BFSCloneGraph(node);
     }
     
-    public Node DFSCloneGraph(Node node)
+    private Node DFSCloneGraph(Node node)
     {
-        if (node == null)
+        if (node == null) {
             return null;
+        }
         
-        if (visited.ContainsKey(node))
+        if (visited.ContainsKey(node)) {
             return visited[node];
-        
-        Node cloneNode = new Node(node.val);
+        }
+            
+        var cloneNode = new Node(node.val);
         visited.Add(node, cloneNode);
         
-        foreach (Node neighbor in node.neighbors)
-        {
-            cloneNode.neighbors.Add(CloneGraph(neighbor));
+        foreach (var n in node.neighbors) {
+            cloneNode.neighbors.Add(CloneGraph(n));
         }
         
         return cloneNode;
     }
     
-    public Node BFSCloneGraph(Node node)
+    private Node BFSCloneGraph(Node node)
     {
         if (node == null)
             return null;
