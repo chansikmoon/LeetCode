@@ -1,16 +1,15 @@
 public class Solution {
-    public int NumberOfArithmeticSlices(int[] A) {
-        var dp = new int[A.Length];
-        int sum = 0;
-        for (int i = 2; i < A.Length; i++)
-        {
-            if (A[i] - A[i-1] == A[i-1] - A[i-2])
-            {
-                dp[i] = 1 + dp[i-1];
-                sum += dp[i];
+    public int NumberOfArithmeticSlices(int[] nums) {
+        var dp = new int[nums.Length];
+        int ret = 0;
+        
+        for (int i = 2; i < nums.Length; i++) {
+            if (nums[i - 2] - nums[i - 1] == nums[i - 1] - nums[i]) {
+                dp[i] = dp[i - 1] + 1;
+                ret += dp[i];
             }
         }
         
-        return sum;
+        return ret;
     }
 }
