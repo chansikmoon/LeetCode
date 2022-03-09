@@ -40,19 +40,15 @@ public class Solution {
 
     public ListNode AnotherVersion(ListNode head)
     {
-        if (head == null)
-            return null;
-
-        ListNode ret = new ListNode(0);
-        ListNode prev = ret;
-        ListNode curr = head;
+        var ret = new ListNode(0);
+        var prev = ret;
+        var curr = head;
         prev.next = head;
-
-        while (curr != null)
-        {
+        
+        while (curr != null) {
             while (curr.next != null && curr.val == curr.next.val)
                 curr = curr.next;
-
+            
             if (prev.next == curr)
                 prev = prev.next;
             else
@@ -60,7 +56,7 @@ public class Solution {
             
             curr = curr.next;
         }
-
-        return ret = ret.next;
+        
+        return ret.next;
     }
 }
