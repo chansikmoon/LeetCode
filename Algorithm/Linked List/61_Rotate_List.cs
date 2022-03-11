@@ -10,6 +10,7 @@
  * }
  */
 public class Solution {
+    // revisited 03/11/2022
     public ListNode RotateRight(ListNode head, int k) {
         if (head == null) return null;
         if (head.next == null) return head;
