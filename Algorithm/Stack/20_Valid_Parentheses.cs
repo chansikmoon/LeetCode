@@ -1,4 +1,5 @@
 public class Solution {
+    // Revisited on 3/13/2022
     public bool IsValid(string s) {
         var st = new Stack<char>();
         
