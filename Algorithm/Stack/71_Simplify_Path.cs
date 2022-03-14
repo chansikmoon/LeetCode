@@ -1,4 +1,5 @@
 public class Solution {
+    // Revisited on 03/14/2022
     public string SimplifyPath(string path) {
         var st = new Stack<string>();
         var dirs = path.Split('/');
