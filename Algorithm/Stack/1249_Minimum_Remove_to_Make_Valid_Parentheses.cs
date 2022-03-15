@@ -1,4 +1,5 @@
 public class Solution {
+    // Revisited on 03/15/2022 
     public string MinRemoveToMakeValid(string s) {
         var setOfIndexToRemove = new HashSet<int>();
         var st = new Stack<int>();
