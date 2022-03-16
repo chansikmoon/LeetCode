@@ -16,6 +16,7 @@ public class Solution {
         return push == 0;
     }
     
+    // revisited on 03/16/2022
     private bool BruteForce(int[] pushed, int[] popped)
     {
         var st = new Stack<int>();
