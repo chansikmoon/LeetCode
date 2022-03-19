@@ -1,5 +1,6 @@
 // Learn from Lee's solution
 // https://leetcode.com/problems/maximum-frequency-stack/discuss/163410/C%2B%2BJavaPython-O(1)
+// revisited on 03/19/2022
 public class OptimalFreqStack {
     private Dictionary<int, int> freqMap;
     private Dictionary<int, Stack<int>> freqToStackMap;
