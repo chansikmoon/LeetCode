@@ -1,4 +1,5 @@
 public class Solution {
+    // Revisited on 3/21/2022
     public int MinDominoRotations(int[] A, int[] B) {
         int ret = Math.Min(GetMinRotations(A[0], A, B), GetMinRotations(B[0], A, B));
         return ret == Int32.MaxValue ? -1 : ret;
