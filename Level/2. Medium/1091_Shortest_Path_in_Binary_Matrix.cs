@@ -6,6 +6,46 @@ public class Solution {
         new int[]{ 1, -1}, new int[]{ 1, 0}, new int[]{ 1, 1},
     };
 
+    public int RevisitedBFS(int[][] grid) {
+        int n = grid.Length;
+        if (grid[0][0] == 1) {
+            return -1;
+        }
+        
+        var cost = new int[n, n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                cost[i, j] = Int32.MaxValue;
+            }
+        }
+        
+        var q = new Queue<int>();
+        q.Enqueue(0);
+        cost[0, 0] = 1;
+        
+        while (q.Count > 0) {
+            int coor = q.Dequeue();
+            int x = coor / n;
+            int y = coor % n;
+            
+            foreach (var dir in dirs) {
+                int newX = dir[0] + x;
+                int newY = dir[1] + y;
+                int newZ = cost[x, y] + 1;
+                
+                if (newX < 0 || newX >= n || newY < 0 || newY >= n || 
+                    grid[newX][newY] == 1 || cost[newX, newY] < newZ) {
+                    continue;
+                }
+                
+                grid[newX][newY] = 1;
+                cost[newX, newY] = newZ;
+                q.Enqueue(newX * n + newY);
+            }
+        }
+        
+        return cost[n-1, n-1] == Int32.MaxValue ? -1 : cost[n-1, n-1];
+    }
      public int ShortestPathBinaryMatrix(int[][] grid) {
         var q = new Queue<Tuple<int, int>>();
         int n = grid.Length, ret = 0;
