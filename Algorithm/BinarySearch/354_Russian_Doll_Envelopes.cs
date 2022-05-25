@@ -2,27 +2,30 @@ public class Solution
 {
     public int MaxEnvelopes(int[][] envelopes)
     {
-        int n = envelopes.Length;
+        var sorted = envelopes.OrderBy(x => x[0]).ThenByDescending(y => y[1]).ToArray();
         var ret = new List<int>();
-        var sorted = envelopes.OrderBy(x => x[0]).ThenByDescending(x => x[1]).ToArray();
-
-        for (int i = 0; i < n; i++)
-        {
+        
+        for (int i = 0; i < sorted.Length; i++) {
             int l = 0, r = ret.Count - 1;
-            while (l <= r)
-            {
-                int mid = l + (r - l) / 2;
-                if (sorted[i][1] > sorted[ret[mid]][1])
-                    l = mid + 1;
-                else
-                    r = mid - 1;
+            
+            while (l <= r) {
+                int m = l + (r - l) / 2;
+                if (sorted[ret[m]][1] < sorted[i][1]) {
+                    l = m + 1;
+                }
+                else {
+                    r = m - 1;
+                }
             }
-            if (l == ret.Count)
+            
+            if (l == ret.Count) {
                 ret.Add(i);
-            else
+            }
+            else {
                 ret[l] = i;
+            }
         }
-
+    
         return ret.Count;
     }
 
